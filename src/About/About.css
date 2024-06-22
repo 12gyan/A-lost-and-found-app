@@ -1,0 +1,33 @@
+/* Adjust the styles according to your needs */
+.about-section {
+    min-height: calc(100vh - 70px); /* Adjust based on the height of your header */
+    background-image: url('./images/about-bg.gif');
+    background-size: cover;
+    background-position: center;
+    padding-top: 70px; 
+    width: 100%;
+}
+  .about-section .container {
+    padding-top: 50px; /* Adjust the padding to ensure content is not hidden behind the header */
+  }
+  
+  .i {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Add any other styles as needed */
+  
+  
+  .display-2 {
+    font-size: 4rem;
+  }
+  
+  .fw-bold {
+    font-weight: bold;
+  }
+  
+  .btn {
+    margin-top: 1rem;
+  }
+  
