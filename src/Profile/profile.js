@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './profile.css'; // Assuming you have saved the provided CSS in this file
 import Pic from './images/profile2.png'
-import { responsiveFontSizes } from '@mui/material';
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('general');
   const [formData, setFormData] = useState({
@@ -47,7 +46,7 @@ const Profile = () => {
   };
 
   return (
-    <section style={{ minHeight: '60vh' }}>
+    <section style={{ minHeight: '60vh' }} className='section-2'>
       <div className="container light-style flex-grow-1 container-p-y">
         <h3 className="font-weight-bold py-3 mb-4">Account settings</h3>
         <div className="card overflow-hidden">

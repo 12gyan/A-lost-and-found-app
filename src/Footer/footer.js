@@ -3,13 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import './style.css'
 import { NavLink } from 'react-router-dom';
-import facebook from './images/facebook-logo.png'
-import instagram from './images/insta-logo.png'
-import twitter from './images/twitter-logo.png'
+
 
 function Footer() {
   return (
-    <footer className="text-white bottom" style={{ backgroundColor: 'rgb(155, 51, 168)', minWidth: '700px' }}>
+    <footer className="text-white bottom" style={{ backgroundColor: 'rgb(155, 51, 168)', minWidth: '700px' ,}}>
       <Container className="d-none d-lg-block text-start">
         <Row className="align-items-start text-start pt-5 pb-5 link-underline link-underline-opacity-0">
           <Col md={3}>
@@ -26,6 +24,7 @@ function Footer() {
           </Col>
           <Col md={2}>
             <strong>Partners</strong>
+            <div><NavLink className="text-white link-underline link-underline-opacity-0" to="/team">Our Team</NavLink></div>
             <div><NavLink className="text-white link-underline link-underline-opacity-0" to="https://knust-community.com">KNUST COMMUNITY</NavLink></div>
           </Col>
           <Col md={2}>
@@ -38,13 +37,13 @@ function Footer() {
             <strong>Social</strong>
             <div>
               <a className="text-white link-underline link-underline-opacity-0 d-inline" to="https://www.instagram.com/knustkumasi/">
-                <img src={instagram} alt="instagram" />
+              <i class="bi bi-linkedin" style={{fontSize:'2rem'}}> </i>
               </a>
               <a className="text-white link-underline link-underline-opacity-0 d-inline"to="https://twitter.com/KNUSTKumasi">
-                <img src={twitter} alt="twitter/X" />
+              <i class="bi bi-twitter-x" style={{fontSize:'2rem'}}> </i>
               </a>
               <a className="text-white link-underline link-underline-opacity-0 d-inline" to="https://www.facebook.com/KNUSTksi">
-                <img src={facebook} alt="facebook" />
+              <i class="bi bi-facebook" style={{fontSize:'2rem'}}/>
               </a>
             </div>
           </Col>
@@ -66,6 +65,7 @@ function Footer() {
           </Col>
           <Col xs={4}>
             <strong>Partners</strong>
+            <div><NavLink className="text-white link-underline link-underline-opacity-0" to="/Team">Our Team</NavLink></div>
             <div><a className="text-white link-underline link-underline-opacity-0" href="https://knust-community.com">KNUST COMMUNITY</a></div>
           </Col>
           <Col xs={6} className="mt-5">
@@ -76,14 +76,14 @@ function Footer() {
           <Col xs={6} className="mt-5">
             <strong>Social</strong>
             <div>
-              <a className="text-white link-underline link-underline-opacity-0 d-inline" href="https://www.instagram.com/knustkumasi/">
-                <img src={instagram} alt="instagram" />
+              <a className="text-white link-underline link-underline-opacity-0 d-inline" href="https://www.LinkedIn.com/knustkumasi/">
+              <i class="bi bi-linkedin" style={{fontSize:'2rem'}}> </i>
               </a>
-              <a className="text-white link-underline link-underline-opacity-0 d-inline" href="https://twitter.com/KNUSTKumasi">
-                <img src={twitter} alt="twitter/X" />
+              <a className="text-white link-underline link-underline-opacity-0 d-inline" href="https://x.com/KNUSTKumasi">
+                <i class="bi bi-twitter-x" style={{fontSize:'2rem'}}> </i>
               </a>
               <a className="text-white link-underline link-underline-opacity-0 d-inline" href="https://www.facebook.com/KNUSTksi">
-                <img src={facebook} alt="facebook" />
+              <i class="bi bi-facebook" style={{fontSize:'2rem'}}/>
               </a>
             </div>
           </Col>

@@ -134,13 +134,9 @@ function ProfileDropdown() {
         Profile
       </a>
       <ul className="dropdown-menu dropdown-menu-end">
-        <NavItem link="/profile" label="General" />
+        <NavItem link="/profile" label="Prolife" />
         <DropdownDivider />
-        <NavItem link="/profile" label="Change Password" />
-        <DropdownDivider />
-        <NavItem link="/profile" label="Info" />
-        <DropdownDivider />
-        <NavItem link="/profile" label="Notifications" />
+        <i class="bi bi-arrow-bar-right" style={{fontSize:'1.4rem'}}/><NavItem link="/ " class="bi bi-arrow-bar-right" label="Log Out" />
       </ul>
     </li>
   );

@@ -2,10 +2,12 @@
   min-height: 60px;
 
 }
-/* .section{
-  padding-top: 4rem;
+.section{
+  height: 100%;
+  max-height: 200%;
+  Position:relative;
 
-} */
+}
 
 .App-intro {
   font-size: large;
