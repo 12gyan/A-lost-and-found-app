@@ -4,6 +4,7 @@ import image from './images/home1.png';
 import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
+
 const Home = (props) => {
   const [text, setText] = React.useState('Discover the Lost');
   const taglineArr = useMemo(() => ['Discover the Lost', 'Connect the Found'], []);

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import bg from './images/bg.jpeg';
 import './Found.css';
 
 const FoundItemForm = () => {

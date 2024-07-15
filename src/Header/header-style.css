@@ -42,7 +42,6 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 /* Ensure the navbar brand and items are aligned horizontally */

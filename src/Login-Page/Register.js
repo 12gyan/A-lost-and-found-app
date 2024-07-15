@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// src/Login-Page/Register.js
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './login.css'; // Make sure to import your CSS
+import './login.css';
+import { MsalProvider } from '@azure/msal-react';
+import { msalInstance, MicrosoftLoginButton } from '../Buttons/MicrosoftButton';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +12,14 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordValid, setPasswordValid] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/Home');
+    }
+  }, [isAuthenticated, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -28,90 +39,87 @@ const Register = () => {
   };
 
   return (
-    <div className="login" style={{ marginTop: '10px', minHeight: '170vh' }}>
-      <form className="login__form">
-        <h1 className="login__title">Create An Account</h1>
-        <div className="login__content">
-          <div className="login__box">
-            <i className="bi bi-person login__icon"></i>
-            <div className="login__box-input">
-              <input type="email" required className="login__input" id="login-email" placeholder=" " />
-              <label htmlFor="login-email" className="login__label">Email</label>
+    <MsalProvider instance={msalInstance}>
+      <div className="login" style={{ marginTop: '10px', minHeight: '170vh' }}>
+        <form className="login__form">
+          <h1 className="login__title">Create An Account</h1>
+          <div className="login__content">
+            <div className="login__box">
+              <i className="bi bi-person login__icon"></i>
+              <div className="login__box-input">
+                <input type="email" required className="login__input" id="login-email" placeholder=" " />
+                <label htmlFor="login-email" className="login__label">Email</label>
+              </div>
+            </div>
+            <div className="login__box">
+              <i className="bi bi-lock login__icon"></i>
+              <div className="login__box-input">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  className={`login__input ${passwordValid ? 'valid' : 'invalid'}`}
+                  id="login-pass"
+                  placeholder=" "
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <label htmlFor="login-pass" className="login__label">Password</label>
+                <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'} login__eye`} id="login-eye" onClick={togglePasswordVisibility}></i>
+              </div>
+            </div>
+            <div className="login__box">
+              <i className="bi bi-lock login__icon"></i>
+              <div className="login__box-input">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  className="login__input"
+                  id="login-pass-2"
+                  placeholder=" "
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                />
+                <label htmlFor="login-pass-2" className="login__label">Confirm Password</label>
+                <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'} login__eye`} id="login-eye-2" onClick={togglePasswordVisibility}></i>
+              </div>
             </div>
           </div>
-          <div className="login__box">
-            <i className="bi bi-lock login__icon"></i>
-            <div className="login__box-input">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                required
-                className={`login__input ${passwordValid ? 'valid' : 'invalid'}`}
-                id="login-pass"
-                placeholder=" "
-                value={password}
-                onChange={handlePasswordChange}
-              />
-              <label htmlFor="login-pass" className="login__label">Password</label>
-              <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'} login__eye`} id="login-eye" onClick={togglePasswordVisibility}></i>
+          {password && (
+            <div className={`password-requirements ${passwordValid ? 'valid' : ''}`}>
+              <p className="requirement-text">
+                Your password must contain:
+              </p>
+              <p className={`requirement-item ${passwordValid ? 'valid' : 'invalid'}`}>
+                {passwordValid ? <i className="bi bi-check-circle"></i> : <i className="bi bi-x-circle"></i>}
+                At least 8 characters
+              </p>
             </div>
-          </div>
-          <div className="login__box">
-            <i className="bi bi-lock login__icon"></i>
-            <div className="login__box-input">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                required
-                className="login__input"
-                id="login-pass-2"
-                placeholder=" "
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-              />
-              <label htmlFor="login-pass-2" className="login__label">Confirm Password</label>
-              <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'} login__eye`} id="login-eye-2" onClick={togglePasswordVisibility}></i>
+          )}
+          {!passwordMatch && confirmPassword && (
+            <div className="password-mismatch">
+              <p className="mismatch-text">
+                <i className="bi bi-x-circle"></i> Passwords do not match
+              </p>
             </div>
+          )}
+          <div className="login__check">
+            <div className="login__check-group">
+              <input type="checkbox" className="login__check-input" id="login-check" />
+              <label htmlFor="login-check" className="login__check-label">Remember me</label>
+            </div>
+            <Link to="#" className="login__forgot">Forgot Password?</Link>
           </div>
-        </div>
-        {password && (
-          <div className={`password-requirements ${passwordValid ? 'valid' : ''}`}>
-            <p className="requirement-text">
-              Your password must contain:
-            </p>
-            <p className={`requirement-item ${passwordValid ? 'valid' : 'invalid'}`}>
-              {passwordValid ? <i className="bi bi-check-circle"></i> : <i className="bi bi-x-circle"></i>}
-              At least 8 characters
-            </p>
+          <button type="submit" className="login__button" disabled={!passwordValid || !passwordMatch}>Sign Up</button>
+          <p className="login__register">
+            Already have an account? <Link to="/Login2">LogIn</Link>
+          </p>
+          <div className="separator">
+            <span style={{ fontSize: '1.3rem' }}>OR</span>
           </div>
-        )}
-        {!passwordMatch && confirmPassword && (
-          <div className="password-mismatch">
-            <p className="mismatch-text">
-              <i className="bi bi-x-circle"></i> Passwords do not match
-            </p>
-          </div>
-        )}
-        <div className="login__check">
-          <div className="login__check-group">
-            <input type="checkbox" className="login__check-input" id="login-check" />
-            <label htmlFor="login-check" className="login__check-label">Remember me</label>
-          </div>
-          <Link to="#" className="login__forgot">Forgot Password?</Link>
-        </div>
-        <button type="submit" className="login__button" disabled={!passwordValid || !passwordMatch}>Sign Up</button>
-        <p className="login__register">
-          Already have an account? <Link to="/Login2">LogIn</Link>
-        </p>
-        <div className="separator">
-          <span style={{ fontSize: '1.3rem' }}>OR</span>
-        </div>
-        <button type="button" className="login__button login__button--google">
-          <i className="bi bi-google"></i> Continue with Google
-        </button>
-        <button type="button" className="login__button login__button--microsoft">
-          <i className="bi bi-microsoft"></i> Continue with Microsoft Outlook
-        </button>
-      </form>
-    </div>
+          <MicrosoftLoginButton setIsAuthenticated={setIsAuthenticated} />
+        </form>
+      </div>
+    </MsalProvider>
   );
 };
 

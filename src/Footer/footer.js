@@ -35,8 +35,8 @@ function Footer() {
           </Col>
           <Col md={2}>
             <strong>Social</strong>
-            <div>
-              <a className="text-white link-underline link-underline-opacity-0 d-inline" to="https://www.instagram.com/knustkumasi/">
+            <div>[// eslint-disable-next-line]
+              <a className="text-white link-underline link-underline-opacity-0 d-inline" to="https://www.instagram.com/knustkumasi">
               <i class="bi bi-linkedin" style={{fontSize:'2rem'}}> </i>
               </a>
               <a className="text-white link-underline link-underline-opacity-0 d-inline"to="https://twitter.com/KNUSTKumasi">
